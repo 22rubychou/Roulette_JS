@@ -233,25 +233,25 @@
 
     #mask {
       display: none;
-      border-right-color: rgba(255, 255, 255, 0.7);
+      border-right-color: rgba(245, 160, 0, 1);
       z-index: 80;
     }
 
     #nummask {
       display: none;
-      border-right-color: rgba(255, 255, 255, 0.7);
+      border-right-color: rgba(200, 20, 165,1);
       z-index: 80;
     }
 
     #midmask {
       display: none;
-      border-right-color: rgba(100, 100, 255, 0.5);
+      border-right-color: rgb(87, 214, 75);
       z-index: 80;
     }
 
     #insidemask {
       display: none;
-      border-right-color: rgba(100, 255, 100, 0.5);
+      border-right-color: rgb(255, 96, 68);
       z-index: 80;
     }
 
@@ -264,6 +264,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index:99;
     }
 
     .name-card .name {
@@ -283,6 +284,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index:99;
     }
 
     .seat-card .seat {
@@ -321,9 +323,12 @@
     "仕辰", "勻皓"
   ];
   let seats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-  $(".out-circle").on("click", function () {
+  $(".out-circle,.mid-circle,.num-circle,.inside-circle").on("click", function () {
     let num = Math.floor(Math.random() * seats.length)
-    running(num);
+    Roulette("#mask",8000,22,num,1)
+    Roulette("#midmask",8000,22,num,2)
+    Roulette("#nummask",8000,22,num,1)
+    Roulette("#insidemask",8000,22,num,2)
   })
 
   for (let i = 0; i < seats.length; i++) {
@@ -345,47 +350,57 @@
     $(".out-circle").append(`<hr style="transform:rotate(${8.18+16.36*i}deg)">`)
   }
 
-  function running(tar) {
-    $("#mask,#nummask,#midmask,#insidemask").show();
-    console.log(tar);
-    let speed = 0;
-    let power = 0;
-    let lasttime = 0;
-    for (let j = 0; j < 4; j++) {
-      if (j < 3) {
-        for (let i = 0; i < seats.length; i++) {
-          setTimeout(() => {
-            $("#mask,#nummask").css({
-              "transform": `rotate(${i*16.36}deg)`
-            })
-            $("#midmask,#insidemask").css({
-              "transform": `rotate(${i*16.36*-1}deg)`
-            })
-          }, i * 25 * Math.pow(3, speed) + power);
-        }
-      } else {
-        for (let i = 0; i < tar + 1; i++) {
-          setTimeout(() => {
-            $("#mask,#nummask").css({
-              "transform": `rotate(${i*16.36}deg)`
-            })
-          }, i * 25 * Math.pow(2.5, speed) + power);
-          lasttime = i * 25 * Math.pow(3, speed) + power - (tar * 270)
-        }
-        for (let i = 0; i < (seats.length - tar + 1); i++) {
-          setTimeout(() => {
-            $("#midmask,#insidemask").css({
-              "transform": `rotate(${i*16.36*-1}deg)`
-            })
-          }, i * 25 * Math.pow(2.5, speed) + power);
-          lasttime = i * 25 * Math.pow(3, speed) + power - (tar * 270)
-        }
-      }
-      power = power + seats.length * 25 * Math.pow(3, speed);
-      speed++;
+  function Roulette(dom,timelength,pieces,target,direction){
+    let timeGap=[1.5,1,0.75,0.5,0.25];
+    let totalRounds=0;
+    let turn=1;
+    switch(direction){
+        case 1:
+            totalRounds=pieces*4+target;
+            turn=1;
+        break;
+        case 2:
+            totalRounds=pieces*5-target;
+            turn=-1;
+        break;
     }
-    setTimeout(() => {
-      $(".target").html(names[tar])
-    }, lasttime);
-  }
+    let div=Math.ceil((totalRounds-target)/4)
+    $(dom).show();
+    let timers=setTimeout(timer,10,dom,timelength,totalRounds);
+
+    function timer(dom,time,rounds){
+        if(rounds<0){
+          $(".target").html(names[target])
+            return;
+        }
+        let timezone=(rounds>5)?Math.ceil((rounds-5)/div)+1:1;
+        let timeInterval=0;
+        switch(timezone){
+            case 5:
+            case 4:
+                timeInterval=1000/(div*2);
+            break;
+            case 3:
+                timeInterval=1000/div;
+            break;
+            case 2:
+                timeInterval=1650/div
+            break;
+            case 1:
+                timeInterval=timeGap[rounds-1]*1000
+            break;
+        }
+        time=time-timeInterval;
+        if(time<0){
+        clearTimeout(timers)
+        }else{
+            $(dom).css({
+              "transform": `rotate(${((rounds+target*turn)%pieces)*16.36*turn}deg)`
+            })
+            rounds--;
+        timers=setTimeout(timer,timeInterval,dom,time,rounds)
+        }   
+    }
+}
+ 
 </script>
