@@ -219,16 +219,14 @@
 
     hr {
       height: 1px;
-      width: 85vh;
+      width: 42.25vh;
       background: #00cdda;
-      /* box-shadow: 1px 1px 3px #999; */
       border: 0;
       position: absolute;
-      transform: rotate(8.18deg);
-      /* transform-origin: 0 50%; */
+      transform-origin: 0 50%;
       z-index: 99;
       right: 0;
-      left: -22.5vh;
+      left: 20vh;
       box-shadow: 0px 0px 3px #555;
 
     }
@@ -296,6 +294,14 @@
       text-shadow: 0 0 5px 555;
       color: white;
     }
+    .notclick{
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      position:absolute;
+      z-index:999;
+      display:none;
+    }
   </style>
 </head>
 
@@ -315,7 +321,7 @@
   <div class="inside-circle">
     <div class="inside-cell" id="insidemask"></div>
   </div>
-
+  <div class="notclick"></div>
 </body>
 
 </html>
@@ -324,13 +330,13 @@
                "怡菁", "義學", "湧銳", "文軍", "巧芸",
                "啟祥", "志祥", "君倪", "浩農", "菀云",
                "昱賢", "怡婷", "妘霓", "柏森", "依婷",
-               "仕辰", "勻皓"
+               "仕辰", "勻皓",
              ];
   let seats = [1, 2, 3, 4, 5,
                6, 7, 8, 9, 10,
                11, 13, 14, 15, 16,
                17, 18, 19, 20, 21,
-               22, 23,];
+               22, 23];
 
   //記錄每次被選中的號碼，個數大於座位數時清空陣列
   let selected=new Array();
@@ -340,6 +346,7 @@
 
   
   $(".out-wrapper").on("click", function () {
+    $(".notclick").show();
     let num = getNum();
     Roulette("#mask",8000,seats.length,num,1,1,1)
     Roulette("#midmask",8000,seats.length,num,2,2,0)
@@ -421,6 +428,7 @@
     function timer(dom,time,rounds){
         if(rounds<0){
           $(".target").html(names[target])
+          $(".notclick").hide();
             return;
         }
         let timezone=(rounds>5)?Math.ceil((rounds-5)/div)+1:1;
