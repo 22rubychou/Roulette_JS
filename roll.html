@@ -27,48 +27,50 @@
     }
     .out-wrapper{
       content: "";
-      width: calc(85vh + 10px);
-      height: calc(85vh + 10px);
+      width:100%;
+      height:100%;
       border: 10px solid rgb(255, 255, 255);
-      border-radius: 42.5vh;
+      border-radius: 50%;
       position: absolute;
       box-sizing: border-box;
-      left: calc(50vw - 42.5vh - 5px);
-      top: calc(50vh - 42.5vh - 5px);
+/*       left: calc(50vw - 42.5vh - 5px);
+      top: calc(50vh - 42.5vh - 5px); */
       z-index: 99;
       box-shadow: 0 0 5px #555;      
     }
     .out-circle {
-      width: 85vh;
-      height: 85vh;
-      border-radius: 42.5vh;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      border-radius: 50%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       position: absolute;
-      left: calc(50vw - 42.5vh);
-      top: calc(50vh - 42.5vh);
+      left: 5px;
+      top: 5px;
       z-index: 80;
     }
 
     .mid-circle {
-      width: 70vh;
-      height: 70vh;
-      border-radius: 35vh;
+      width: 70%;
+      height: 70%;
+      border-radius: 50%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      position: relative;
+      position: absolute;
       background: #eee;
+      top:calc(50% - 35%);
+      left:calc(50% - 35%);
       z-index: 80;
     }
 
     .mid-circle::after {
       content: "";
-      width: calc(70vh + 10px);
-      height: calc(70vh + 10px);
+      width: calc(100% + 10px);
+      height: calc(100% + 10px);
       border: 10px solid white;
-      border-radius: 35vh;
+      border-radius: 50%;
       position: absolute;
       box-sizing: border-box;
       left: -5px;
@@ -78,24 +80,24 @@
     }
 
     .num-circle {
-      width: 50vh;
-      height: 50vh;
-      border-radius: 25vh;
+      width: 50%;
+      height: 50%;
+      border-radius: 25%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       position: absolute;
-      left: calc(50vw - 25vh);
-      top: calc(50vh - 25vh);
+      left:25%;
+      top: 25%;
       z-index: 81;
     }
 
     .num-circle::after {
       content: "";
-      width: calc(50vh + 5px);
-      height: calc(50vh + 5px);
+      width: calc(100% + 5px);
+      height: calc(100% + 5px);
       border: 5px solid white;
-      border-radius: 25vh;
+      border-radius: 50%;
       position: absolute;
       box-sizing: border-box;
       left: -2.5px;
@@ -105,24 +107,24 @@
     }
 
     .inside-circle {
-      width: 40vh;
-      height: 40vh;
-      border-radius: 20vh;
+      width: 40%;
+      height: 40%;
+      border-radius: 50%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       position: absolute;
-      left: calc(50vw - 20vh);
-      top: calc(50vh - 20vh);
+      left: 30%;
+      top: 30%;
       z-index: 82;
     }
 
     .inside-circle::after {
       content: "";
-      width: calc(40vh + 5px);
-      height: calc(40vh + 5px);
+      width: calc(100% + 5px);
+      height: calc(100% + 5px);
       border: 5px solid white;
-      border-radius: 20vh;
+      border-radius: 50%;
       position: absolute;
       box-sizing: border-box;
       left: -2.5px;
@@ -133,14 +135,14 @@
     }
 
     .target {
-      width: calc(20vh + 10px);
-      height: calc(20vh + 10px);
+      width: calc(20% + 10px);
+      height: calc(20% + 10px);
       border: 10px solid #ce4e4e;
-      border-radius: calc(10vh + 5px);
+      border-radius: 50%;
       position: absolute;
       box-sizing: border-box;
-      left: calc(50vw - 10vh - 5px);
-      top: calc(50vh - 10vh - 5px);
+      left: 40%;
+      top: 40%;
       z-index: 90;
       background: white;
       box-shadow: 0 0 5px #555;
@@ -219,14 +221,14 @@
 
     hr {
       height: 1px;
-      width: 42.25vh;
+      width: 50%;
       background: #00cdda;
       border: 0;
       position: absolute;
       transform-origin: 0 50%;
       z-index: 99;
       right: 0;
-      left: 20vh;
+      left: 50%;
       box-shadow: 0px 0px 3px #555;
 
     }
@@ -302,11 +304,19 @@
       z-index:999;
       display:none;
     }
+    .roulette-box{
+      min-width:600px;
+      min-height:600px;
+      width:calc(85vh + 10px);
+      height:calc(85vh + 10px);
+      background:#eee;
+      position:relative;
+    }
   </style>
 </head>
 
 <body>
-
+  <div class="roulette-box">
   <div class="target">？</div>
   <div class="out-wrapper"></div>
   <div class="out-circle">
@@ -321,7 +331,9 @@
   <div class="inside-circle">
     <div class="inside-cell" id="insidemask"></div>
   </div>
+</div>
   <div class="notclick"></div>
+
 </body>
 
 </html>
@@ -371,7 +383,7 @@
       `<div class="name-card" style="transform:rotate(${degree*i}deg)"><div class="name">${names[i]}</div></div>`)
     $(".num-circle").append(
       `<div class="seat-card" style="transform:rotate(${degree*i}deg)"><div class="seat">${seats[i]}</div></div>`)
-    $(".inside-circle").append(`<hr style="transform:rotate(${(degree/2)+degree*i}deg)">`)
+    $(".out-circle").append(`<hr style="transform:rotate(${(degree/2)+degree*i}deg)">`)
   }
   setBorder();
 
