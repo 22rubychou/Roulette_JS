@@ -17,14 +17,6 @@
       font-family: "Microsoft JhengHei",Arial, Helvetica, sans-serif;
     }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100vw;
-      height: 100vh;
-      position: relative
-    }
     .out-wrapper{
       content: "";
       width:100%;
@@ -52,29 +44,30 @@
     }
 
     .mid-circle {
-      width: 70%;
-      height: 70%;
+      width: 80%;
+      height: 80%;
       border-radius: 50%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       position: absolute;
       background: #eee;
-      top:calc(50% - 35%);
-      left:calc(50% - 35%);
+      top:calc(50% - 40%);
+      left:calc(50% - 40%);
+      padding:5px;
       z-index: 80;
     }
 
     .mid-circle::after {
       content: "";
-      width: calc(100% + 10px);
-      height: calc(100% + 10px);
+      width: 100%;
+      height:100%;
       border: 10px solid white;
       border-radius: 50%;
       position: absolute;
       box-sizing: border-box;
-      left: -5px;
-      top: -5px;
+      left: 0px;
+      top: 0px;
       z-index: 80;
       box-shadow: 0 0 4px #555;
     }
@@ -146,7 +139,7 @@
       z-index: 90;
       background: white;
       box-shadow: 0 0 5px #555;
-      font-size: 56px;
+      font-size: 50px;
       text-shadow: 2px 2px 7px #999;
       display: flex;
       justify-content: center;
@@ -154,81 +147,82 @@
     }
 
     .cell {
-      border-right: 42.5vh solid lightseagreen;
-      border-top: calc(42.5vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(42.5vh * 3.14 / 22) solid transparent;
+      border-style: solid;
+      border-color: transparent;
+      border-right-color: lightseagreen;
       position: absolute;
       transform-origin: 0 50%;
     }
 
     .cellb {
-      border-right: 42.5vh solid rgb(21, 94, 203);
-      border-top: calc(42.5vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(42.5vh * 3.14 / 22) solid transparent;
+      border-style: solid;
+      border-color: transparent;
+      border-right-color: rgb(21, 94, 203);
       position: absolute;
       transform-origin: 0 50%;
     }
 
     .mid-cell {
-      border-right: 35vh solid rgba(27, 48, 104, 0.85);
-      border-top: calc(35vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(35vh * 3.14 / 22) solid transparent;
+      border-style: solid;
+      border-color: transparent;
+      border-right-color:  rgba(27, 48, 104, 0.85);
       position: absolute;
       transform-origin: 0 50%;
 
     }
 
     .mid-cellb {
-      border-right: 35vh solid rgba(46, 146, 141, 0.8);
-      border-top: calc(35vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(35vh * 3.14 / 22) solid transparent;
+      border-style: solid;
+      border-color:  transparent;
+      border-right-color: rgba(46, 146, 141, 0.8);
       position: absolute;
       transform-origin: 0 50%;
 
     }
 
     .num-cell {
-      border-right: 25vh solid rgb(32, 178, 170);
-      border-top: calc(25vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(25vh * 3.14 / 22) solid transparent;
+      border-style:  solid;
+      border-color:  transparent;
+      border-right-color:rgb(32, 178, 170);
       position: absolute;
       transform-origin: 0 50%;
     }
 
     .num-cellb {
-      border-right: 25vh solid rgb(21, 94, 203);
-      border-top: calc(25vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(25vh * 3.14 / 22) solid transparent;
+      border-style: solid ;
+      border-color: transparent;
+      border-right-color: rgb(21, 94, 203);
       position: absolute;
       transform-origin: 0 50%;
     }
 
     .inside-cell {
-      border-right: 20vh solid rgb(43, 61, 112);
-      border-top: calc(20vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(20vh * 3.14 / 22) solid transparent;
+      border-style: solid;
+      border-color: transparent;
+      border-right-color:  rgb(43, 61, 112);
       position: absolute;
       transform-origin: 0 50%;
+
     }
 
     .inside-cellb {
-      border-right: 20vh solid rgba(46, 146, 141, 0.8);
-      border-top: calc(20vh * 3.14 / 22) solid transparent;
-      border-bottom: calc(20vh * 3.14 / 22) solid transparent;
+      border-style:  solid;
+      border-color: transparent;
+      border-right-color: rgba(46, 146, 141, 0.8);
       position: absolute;
       transform-origin: 0 50%;
     }
 
     hr {
       height: 1px;
-      width: 50%;
+      /* width: 50%; */
       background: #00cdda;
       border: 0;
       position: absolute;
       transform-origin: 0 50%;
       z-index: 99;
       right: 0;
-      left: 50%;
+      left: calc(50% + 2px);
       box-shadow: 0px 0px 3px #555;
 
     }
@@ -260,27 +254,28 @@
     .name-card {
       width: 50px;
       height: 100px;
-      transform-origin: calc((42.5vh - 55px) * -1);
+      /* transform-origin: calc((42.5vh - 55px) * -1); */
       position: absolute;
-      right: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index:99;
+      right:10px;
     }
 
     .name-card .name {
       transform: rotate(90deg);
       text-align: center;
       font-size: 24px;
-      text-shadow: 0 0 5px 555;
+      text-shadow: 0 0 5px #555;
       color: white;
+
     }
 
     .seat-card {
       width: 40px;
       height: 80px;
-      transform-origin: calc((25vh - 40px) * -1);
+/*       transform-origin: calc((25vh - 40px) * -1); */
       position: absolute;
       right: 0;
       display: flex;
@@ -309,8 +304,8 @@
       min-height:600px;
       width:calc(85vh + 10px);
       height:calc(85vh + 10px);
-      background:#eee;
       position:relative;
+      margin:auto;
     }
   </style>
 </head>
@@ -383,29 +378,39 @@
       `<div class="name-card" style="transform:rotate(${degree*i}deg)"><div class="name">${names[i]}</div></div>`)
     $(".num-circle").append(
       `<div class="seat-card" style="transform:rotate(${degree*i}deg)"><div class="seat">${seats[i]}</div></div>`)
-    $(".out-circle").append(`<hr style="transform:rotate(${(degree/2)+degree*i}deg)">`)
+    $(".inside-circle").append(`<hr style="transform:rotate(${(degree/2)+degree*i}deg)">`)
   }
   setBorder();
 
+  $(window).on("resize",function(){
+    setBorder();
+  })
 
   //設定每個扇形div的css
   function setBorder(){
     $(".cell,.cellb").css({
-      "border-top":$(window).height()*0.425*3.14/seats.length+"px solid transparent",
-      "border-bottom":$(window).height()*0.425*3.14/seats.length+"px solid transparent"
+      "border-top-width":$(".out-circle").height()*0.5*3.14/seats.length+"px",
+      "border-right-width":($(".out-circle").height()*0.5-5)+"px",
+      "border-bottom-width":$(".out-circle").height()*0.5*3.14/seats.length+"px"
     })
     $(".mid-cell,.mid-cellb").css({
-      "border-top":$(window).height()*0.35*3.14/seats.length+"px solid transparent",
-      "border-bottom":$(window).height()*0.35*3.14/seats.length+"px solid transparent"
+      "border-top-width":$(".mid-circle").height()*0.5*3.14/seats.length+"px",
+      "border-right-width":($(".mid-circle").height()*0.5-5)+"px",
+      "border-bottom-width":$(".mid-circle").height()*0.5*3.14/seats.length+"px"
     })
     $(".num-cell,.num-cellb").css({
-      "border-top":$(window).height()*0.25*3.14/seats.length+"px solid transparent",
-      "border-bottom":$(window).height()*0.25*3.14/seats.length+"px solid transparent"
+      "border-top-width":$(".num-circle").height()*0.5*3.14/seats.length+"px",
+      "border-right-width":($(".num-circle").height()*0.5-5)+"px",
+      "border-bottom-width":$(".num-circle").height()*0.5*3.14/seats.length+"px"
     })
-    $(".inside-cell,.insid-cellb").css({
-      "border-top":$(window).height()*0.2*3.14/seats.length+"px solid transparent",
-      "border-bottom":$(window).height()*0.2*3.14/seats.length+"px solid transparent"
+    $(".inside-cell,.inside-cellb").css({
+      "border-top-width":$(".inside-circle").height()*0.5*3.14/seats.length+"px",
+      "border-right-width":($(".inside-circle").height()*0.5-5)+"px",
+      "border-bottom-width":$(".inside-circle").height()*0.5*3.14/seats.length+"px"
     })
+    $(".seat-card").css({"transform-origin":($(".num-circle").height()*0.5-40)*-1});
+    $(".name-card").css({"transform-origin":($(".out-circle").height()*0.5-60)*-1});
+    $("hr").css({"width":$(".out-circle").height()/2})
   }
 
   function Roulette(dom,timelength,pieces,target,direction,speed,showname){
